@@ -5,10 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class GUITest extends Application {
 
@@ -23,23 +25,19 @@ public class GUITest extends Application {
     @Override
     public void start(Stage primaryStage)
     {
-        Line line = new Line();
-        line.setStartX(100.00);
-        line.setStartY(150.00);
-        line.setEndX(500);
-        line.setEndY(190.00);
-        //line.set(Color.RED);
+        Path path = new Path();
+        MoveTo startingPoint = new MoveTo(50,200);
+        ArrayList<LineTo> lineTos = new ArrayList<>();
+        lineTos.add(new LineTo(100, 50));
+        lineTos.add(new LineTo(150, 200));
+        lineTos.add(new LineTo(50, 200));
+        path.getElements().add(startingPoint);
+        path.getElements().addAll(lineTos);
+        //path.setFillRule(FillRule.);
 
-        Text text = new Text();
-        text.setFont(new Font(45));
-        text.setX(50);
-        text.setY(150);
-        text.setText("hello world");
-
-
-        Group group = new Group(line);
+        Group group = new Group();
         ObservableList list = group.getChildren();
-        list.add(text);
+        list.add(path);
 
         Scene scene = new Scene(group, 600, 300);
 
