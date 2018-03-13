@@ -1,6 +1,7 @@
 package com.graphics.playground;
 
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
@@ -39,9 +40,17 @@ public class GUITest extends Application {
         rotateTransition.setDuration(Duration.millis(10000));
         rotateTransition.setNode(triangle);
         rotateTransition.setByAngle(360);
-        rotateTransition.setCycleCount(50);
-        rotateTransition.setAutoReverse(false);
+        rotateTransition.setCycleCount(2);
+        rotateTransition.setAutoReverse(true);
         rotateTransition.play();
+
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setDuration(Duration.millis(10000));
+        translateTransition.setNode(triangle);
+        translateTransition.setByX(300);
+        translateTransition.setCycleCount(5);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
 
         Group group = new Group();
         ObservableList list = group.getChildren();
