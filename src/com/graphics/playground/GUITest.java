@@ -25,19 +25,17 @@ public class GUITest extends Application {
     @Override
     public void start(Stage primaryStage)
     {
-        Path path = new Path();
-        MoveTo startingPoint = new MoveTo(50,200);
-        ArrayList<LineTo> lineTos = new ArrayList<>();
-        lineTos.add(new LineTo(100, 50));
-        lineTos.add(new LineTo(150, 200));
-        lineTos.add(new LineTo(50, 200));
-        path.getElements().add(startingPoint);
-        path.getElements().addAll(lineTos);
-        //path.setFillRule(FillRule.);
+        Polygon triangle = new Polygon();
+        triangle.getPoints().addAll(new Double[]{
+                100.0,50.0,
+                150.0,200.0,
+                50.0,200.0
+        });
+        triangle.setFill(Color.GRAY);
 
         Group group = new Group();
         ObservableList list = group.getChildren();
-        list.add(path);
+        list.add(triangle);
 
         Scene scene = new Scene(group, 600, 300);
 
