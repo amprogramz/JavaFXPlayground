@@ -1,5 +1,6 @@
 package com.graphics.playground;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
@@ -9,6 +10,7 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,14 @@ public class GUITest extends Application {
                 50.0,200.0
         });
         triangle.setFill(Color.GRAY);
+
+        RotateTransition rotateTransition = new RotateTransition();
+        rotateTransition.setDuration(Duration.millis(10000));
+        rotateTransition.setNode(triangle);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setCycleCount(50);
+        rotateTransition.setAutoReverse(false);
+        rotateTransition.play();
 
         Group group = new Group();
         ObservableList list = group.getChildren();
