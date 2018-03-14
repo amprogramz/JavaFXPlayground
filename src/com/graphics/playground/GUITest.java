@@ -1,28 +1,24 @@
 package com.graphics.playground;
 
+
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.ImageInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOError;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class GUITest extends Application {
 
@@ -74,13 +70,25 @@ public class GUITest extends Application {
 
 
 
+
+
+
+
         Group group = new Group();
         ObservableList list = group.getChildren();
         list.add(getImage());
         list.add(triangle);
 
+
         Scene scene = new Scene(group, 600, 300);
 
+
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
+            if(key.getCode() == KeyCode.RIGHT)
+            {
+                System.out.println("you hit the right key.");
+            }
+                });
         //scene.setFill(Color.W);
 
         primaryStage.setTitle("Line");
