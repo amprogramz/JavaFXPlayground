@@ -3,18 +3,17 @@ package com.graphics.playground;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 public class AtariLikeBreakoutWanabe extends Application {
@@ -47,9 +46,15 @@ public class AtariLikeBreakoutWanabe extends Application {
         this.circle.setCenterY(50);
         this.circle.setRadius(10);
 
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(20),
-                ae ->  ballMovement()));
+        Ball ball = new Ball(500, 50, 10);
+        ball.invokeBallMovement();
+
+
+
+            Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(20),
+                    ae ->  ballMovement() ));
+
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
@@ -59,6 +64,7 @@ public class AtariLikeBreakoutWanabe extends Application {
         ObservableList list = group.getChildren();
         list.add(rectangle);
         list.add(circle);
+        list.add(ball.getBall());
 
         Scene scene = new Scene(group, 1000, 800);
 
