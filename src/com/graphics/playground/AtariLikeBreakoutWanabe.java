@@ -22,14 +22,13 @@ public class AtariLikeBreakoutWanabe extends Application {
     @Override
     public void start(Stage primaryStage)
     {
-        final int recX = 500;
-        int recX2 = 0;
-        recX2 = recX;
-        final int recY = 750;
+        final double REC_X = 500;
+        final double REC_Y = 750;
+        final double MOVEMENT = 10;
 
         Rectangle rectangle = new Rectangle();
-        rectangle.setX(recX);
-        rectangle.setY(recY);
+        rectangle.setX(REC_X);
+        rectangle.setY(REC_Y);
         rectangle.setWidth(100);
         rectangle.setHeight(10);
 
@@ -54,12 +53,16 @@ public class AtariLikeBreakoutWanabe extends Application {
             switch(key.getCode())
             {
                 case RIGHT:
-                    int rec2 = recX + 1;
-                    translateRectangle.setX(rec2);
-                    translateRectangle.setY(recY);
-                    rectangle.getTransforms().addAll(translateRectangle);
+                    if(rectangle.getX() < (1000 - rectangle.getWidth()))
+                    {
+                        rectangle.setX(rectangle.getX() + MOVEMENT);
+                    }
                     break;
                 case LEFT:
+                    if(rectangle.getX() > 0)
+                    {
+                        rectangle.setX(rectangle.getX() - MOVEMENT);
+                    }
                     break;
             }
         });
