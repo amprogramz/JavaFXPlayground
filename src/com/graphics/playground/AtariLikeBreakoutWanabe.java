@@ -1,5 +1,9 @@
 package com.graphics.playground;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
@@ -10,7 +14,7 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
+import javafx.util.Duration;
 
 
 public class AtariLikeBreakoutWanabe extends Application {
@@ -18,6 +22,10 @@ public class AtariLikeBreakoutWanabe extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    private Circle circle = new Circle();
+    private double yMovement = 5;
+    private double xMovement = 3;
 
     @Override
     public void start(Stage primaryStage)
@@ -32,12 +40,19 @@ public class AtariLikeBreakoutWanabe extends Application {
         rectangle.setWidth(100);
         rectangle.setHeight(10);
 
-        Translate translateRectangle = new Translate();
 
-        Circle circle = new Circle();
-        circle.setCenterX(500);
-        circle.setCenterY(50);
-        circle.setRadius(10);
+
+        //Circle circle = new Circle();
+        this.circle.setCenterX(500);
+        this.circle.setCenterY(50);
+        this.circle.setRadius(10);
+
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(20),
+                ae ->  ballMovement()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
 
 
         Group group = new Group();
@@ -46,6 +61,8 @@ public class AtariLikeBreakoutWanabe extends Application {
         list.add(circle);
 
         Scene scene = new Scene(group, 1000, 800);
+
+
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->
         {
@@ -70,5 +87,37 @@ public class AtariLikeBreakoutWanabe extends Application {
         primaryStage.setTitle("Atari Breakout");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+
+    public void ballMovement()
+    {
+        if(circle.getCenterX() > 0 && circle.getCenterX() < 1000)
+        {
+            circle.setCenterX(circle.getCenterX() + xMovement);
+        }else if (circle.getCenterX() <= 0)
+        {
+            xMovement = 5;
+            circle.setCenterX(circle.getCenterX() + xMovement);
+        }else if (circle.getCenterX() >= 1000)
+        {
+            xMovement = -xMovement;
+            circle.setCenterX(circle.getCenterX() + xMovement);
+        }
+
+
+        if(circle.getCenterY() > 0 && circle.getCenterY() < 800)
+        {
+            circle.setCenterY(circle.getCenterY() + yMovement);
+        }else if (circle.getCenterY() == 0)
+        {
+            yMovement = 5;
+            circle.setCenterY(circle.getCenterY() + yMovement);
+        }else if (circle.getCenterY() >= 800)
+        {
+            this.yMovement = (-5);
+            circle.setCenterY(circle.getCenterY() + yMovement);
+
+        }
     }
 }
