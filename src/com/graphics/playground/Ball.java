@@ -2,6 +2,8 @@ package com.graphics.playground;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
+
 
 public class Ball {
     private Circle circle = new Circle();
@@ -26,9 +28,9 @@ public class Ball {
     }
 
 
-    public void ballColide1(Rectangle paddle, Rectangle block)
+    public void ballColide1(Rectangle paddle, ArrayList<Rectangle> blocks)
     {
-        if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, block))
+        if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, blocks))
         {
             yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);

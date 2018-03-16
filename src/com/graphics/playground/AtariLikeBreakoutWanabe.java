@@ -34,9 +34,8 @@ public class AtariLikeBreakoutWanabe extends Application {
         ObservableList list = group.getChildren();
         list.add(paddle.getPaddle());
         list.add(ball.getBall());
-        list.add(block.getBlock());
-        list.add(new Block(110,5).getBlock());
-        list.add(new Block(215, 5).getBlock());
+       // list.add(block.getBlock());
+        list.addAll(blocks.getBlocks());
 
 
         Scene scene = new Scene(group, 1000, 800);
@@ -51,7 +50,7 @@ public class AtariLikeBreakoutWanabe extends Application {
     {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(20),
-                ae ->  ball.ballColide2(paddle.getPaddle(), block.getBlock()) ));
+                ae ->  ball.ballColide1(paddle.getPaddle(), blocks.getBlocks()) ));
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
