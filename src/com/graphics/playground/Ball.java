@@ -4,12 +4,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Ball {
     private Circle circle = new Circle();
-    private double yMovement = 3;
-    private double xMovement = 3;
+    private double yMovement = 5;
+    private double xMovement = 5;
 
     public Ball() {
         this.circle.setCenterX(500);
@@ -28,35 +29,42 @@ public class Ball {
         return circle;
     }
 
-    public void invokeBallMovement()
+    public void invokeBallMovement(Rectangle paddle)
     {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(20),
-                ae ->  ballMovement() ));
+                ae ->  ballMovement(paddle) ));
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    public void ballMovement() {
-        if (circle.getCenterX() > 0 && circle.getCenterX() < 1000) {
+    public void ballMovement(Rectangle paddle)
+    {
+        if (Colideable.collishion(circle, paddle))
+        {
+            yMovement = -yMovement;
+            circle.setCenterY(circle.getCenterY() + yMovement);
+        }
+
+        if (circle.getCenterX() > circle.getRadius() && circle.getCenterX() < (1000 - circle.getRadius())) {
             circle.setCenterX(circle.getCenterX() + xMovement);
-        } else if (circle.getCenterX() <= 0) {
-            xMovement = 5;
+        } else if (circle.getCenterX() <= circle.getRadius()) {
+            xMovement = -xMovement;
             circle.setCenterX(circle.getCenterX() + xMovement);
-        } else if (circle.getCenterX() >= 1000) {
+        } else if (circle.getCenterX() >= (1000 - circle.getRadius() )) {
             xMovement = -xMovement;
             circle.setCenterX(circle.getCenterX() + xMovement);
         }
 
 
-        if (circle.getCenterY() > 0 && circle.getCenterY() < 800) {
+        if (circle.getCenterY() > circle.getRadius() && circle.getCenterY() < (800 - circle.getRadius() )) {
             circle.setCenterY(circle.getCenterY() + yMovement);
-        } else if (circle.getCenterY() == 0) {
-            yMovement = 5;
+        } else if (circle.getCenterY() <= circle.getRadius() ) {
+            yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
-        } else if (circle.getCenterY() >= 800) {
-            this.yMovement = (-5);
+        } else if (circle.getCenterY() >= (800 - circle.getRadius() )) {
+            this.yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
 
         }

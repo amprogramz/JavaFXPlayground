@@ -31,24 +31,24 @@ public class Paddle
     return rectangle;
     }
 
-
-    public void controls(Scene scene)
+    public void movePaddleRight()
     {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->
-        {
-
-            switch (key.getCode()) {
-                case RIGHT:
-                    if (rectangle.getX() < (1000 - rectangle.getWidth())) {
-                        rectangle.setX(rectangle.getX() + MOVEMENT);
-                    }
-                    break;
-                case LEFT:
-                    if (rectangle.getX() > 0) {
-                        rectangle.setX(rectangle.getX() - MOVEMENT);
-                    }
-                    break;
-            }
-        });
+        rectangle.setX(rectangle.getX() + MOVEMENT);
+    }
+    public void movePaddleLeft()
+    {
+        rectangle.setX(rectangle.getX() - MOVEMENT);
+    }
+    public double getX()
+    {
+        return rectangle.getX();
+    }
+    public double getY()
+    {
+        return rectangle.getY();
+    }
+    public double getWidth()
+    {
+        return rectangle.getWidth();
     }
 }
