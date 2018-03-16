@@ -1,7 +1,5 @@
 package com.graphics.playground;
 
-import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 
 public class Paddle

@@ -4,10 +4,12 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
 
+import java.util.ArrayList;
 
 
 public class AtariLikeBreakoutWanabe extends Application {
@@ -18,6 +20,8 @@ public class AtariLikeBreakoutWanabe extends Application {
 
     private Paddle paddle = new Paddle();
     private Ball ball = new Ball();
+    private Block block = new Block(5,5);
+    private BlockGrid blocks = new BlockGrid(8, 1000);
 
     @Override
     public void start(Stage primaryStage) {
@@ -27,6 +31,10 @@ public class AtariLikeBreakoutWanabe extends Application {
         ObservableList list = group.getChildren();
         list.add(paddle.getPaddle());
         list.add(ball.getBall());
+        list.add(block.getBlock());
+        list.add(new Block(110,5).getBlock());
+        list.add(new Block(215, 5).getBlock());
+
 
         Scene scene = new Scene(group, 1000, 800);
         controls(scene, paddle, ball);
@@ -55,7 +63,7 @@ public class AtariLikeBreakoutWanabe extends Application {
                     }
                     break;
                 case SPACE:
-                    ball.invokeBallMovement(paddle.getPaddle());
+                    ball.invokeBallMovement(paddle.getPaddle(), block.getBlock());
                     break;
             }
         });

@@ -3,6 +3,7 @@ package com.graphics.playground;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -29,19 +30,19 @@ public class Ball {
         return circle;
     }
 
-    public void invokeBallMovement(Rectangle paddle)
+    public void invokeBallMovement(Rectangle paddle, Rectangle block)
     {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(20),
-                ae ->  ballMovement(paddle) ));
+                ae ->  ballMovement(paddle, block) ));
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    public void ballMovement(Rectangle paddle)
+    public void ballMovement(Rectangle paddle, Rectangle block)
     {
-        if (Colideable.collishion(circle, paddle))
+        if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, block))
         {
             yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
