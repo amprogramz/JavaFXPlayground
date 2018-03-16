@@ -1,12 +1,7 @@
 package com.graphics.playground;
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
+
 
 public class Ball {
     private Circle circle = new Circle();
@@ -30,23 +25,29 @@ public class Ball {
         return circle;
     }
 
-    public void invokeBallMovement(Rectangle paddle, Rectangle block)
-    {
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(20),
-                ae ->  ballMovement(paddle, block) ));
 
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    public void ballMovement(Rectangle paddle, Rectangle block)
+    public void ballColide1(Rectangle paddle, Rectangle block)
     {
         if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, block))
         {
             yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
         }
+        ballMovement();
+    }
+    public void ballColide2(Rectangle paddle, Rectangle paddle2)
+    {
+        if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, paddle2))
+        {
+            xMovement = -xMovement;
+            circle.setCenterX(circle.getCenterX() + xMovement);
+        }
+
+        ballMovement();
+    }
+
+    public void ballMovement()
+    {
 
         if (circle.getCenterX() > circle.getRadius() && circle.getCenterX() < (1000 - circle.getRadius())) {
             circle.setCenterX(circle.getCenterX() + xMovement);
@@ -71,5 +72,6 @@ public class Ball {
         }
 
     }//end ballMovement()
+
 
 }//end class

@@ -1,12 +1,15 @@
 package com.graphics.playground;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 
 import java.util.ArrayList;
@@ -37,14 +40,24 @@ public class AtariLikeBreakoutWanabe extends Application {
 
 
         Scene scene = new Scene(group, 1000, 800);
-        controls(scene, paddle, ball);
+        controls(scene);
 
         primaryStage.setTitle("Atari Breakout");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void controls(Scene scene, Paddle paddle, Ball ball)
+    public void invokeBallMovement()
+    {
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(20),
+                ae ->  ball.ballColide2(paddle.getPaddle(), block.getBlock()) ));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public void controls(Scene scene)
     {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->
         {
@@ -63,7 +76,7 @@ public class AtariLikeBreakoutWanabe extends Application {
                     }
                     break;
                 case SPACE:
-                    ball.invokeBallMovement(paddle.getPaddle(), block.getBlock());
+                    invokeBallMovement();
                     break;
             }
         });

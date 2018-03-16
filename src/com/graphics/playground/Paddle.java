@@ -24,6 +24,13 @@ public class Paddle
         rectangle.setWidth(width);
         rectangle.setHeight(height);
     }
+    public Paddle(double x, double y, double width, double height)
+    {
+        rectangle.setX(x);
+        rectangle.setY(y);
+        rectangle.setWidth(width);
+        rectangle.setHeight(height);
+    }
     public Rectangle getPaddle()
     {
     return rectangle;
@@ -36,6 +43,14 @@ public class Paddle
     public void movePaddleLeft()
     {
         rectangle.setX(rectangle.getX() - MOVEMENT);
+    }
+    public void movePaddleUp()
+    {
+        rectangle.setY(rectangle.getY() - MOVEMENT);
+    }
+    public void movePaddleDown()
+    {
+        rectangle.setY(rectangle.getY() + MOVEMENT);
     }
     public double getX()
     {
