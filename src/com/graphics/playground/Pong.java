@@ -60,7 +60,7 @@ public class Pong extends Application {
                     }
                     break;
                 case DOWN:
-                    if (paddle2.getY() < (700-paddle2.getWidth() )) {
+                    if (paddle2.getY() < (800-paddle2.getHeight() )) {
                         paddle2.movePaddleDown();
                     }
                     break;
@@ -70,7 +70,7 @@ public class Pong extends Application {
                     }
                     break;
                 case Z:
-                    if (paddle1.getY() < (700 - paddle1.getWidth() )) {
+                    if (paddle1.getY() < (800 - paddle1.getHeight() )) {
                         paddle1.movePaddleDown();
                     }
                     break;

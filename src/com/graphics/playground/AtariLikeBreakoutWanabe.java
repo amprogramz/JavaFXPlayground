@@ -23,7 +23,6 @@ public class AtariLikeBreakoutWanabe extends Application {
 
     private Paddle paddle = new Paddle();
     private Ball ball = new Ball();
-    private Block block = new Block(5,5);
     private BlockGrid blocks = new BlockGrid(8, 1000);
 
     @Override
@@ -34,7 +33,6 @@ public class AtariLikeBreakoutWanabe extends Application {
         ObservableList list = group.getChildren();
         list.add(paddle.getPaddle());
         list.add(ball.getBall());
-       // list.add(block.getBlock());
         list.addAll(blocks.getBlocks());
 
 

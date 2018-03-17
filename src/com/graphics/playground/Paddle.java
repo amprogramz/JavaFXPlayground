@@ -64,4 +64,5 @@ public class Paddle
     {
         return rectangle.getWidth();
     }
+    public double getHeight(){ return rectangle.getHeight(); }
 }

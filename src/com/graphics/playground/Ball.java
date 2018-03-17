@@ -30,7 +30,16 @@ public class Ball {
 
     public void ballColide1(Rectangle paddle, ArrayList<Rectangle> blocks)
     {
-        if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, blocks))
+        if ( Colideable.collishion(circle, paddle) )
+        {
+            double relativePos = Colideable.getRelativePositionCircleCollidedX(circle, paddle);
+
+            //I came up with this formula so that based on the position of the ball on the paddle, it would direct the
+            // ball to a different angle. This movement is based on a scale of 10, i figured these would be the easiest
+            // numbers to work with since a percent is out of 100.
+            xMovement = (relativePos - .5) * 10;
+            yMovement = Math.abs(xMovement) - 6;
+        }else if( Colideable.collishion(circle, blocks) )
         {
             yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
@@ -41,6 +50,7 @@ public class Ball {
     {
         if (Colideable.collishion(circle, paddle) || Colideable.collishion(circle, paddle2))
         {
+
             xMovement = -xMovement;
             circle.setCenterX(circle.getCenterX() + xMovement);
         }

@@ -32,4 +32,16 @@ public class Colideable
         return false;
     }
 
+    public static double getRelativePositionCircleCollidedX(Circle circle, Rectangle paddle)
+    {
+        System.out.println((circle.getCenterX() - paddle.getX()) / paddle.getWidth());
+        return (circle.getCenterX() - paddle.getX()) / paddle.getWidth();
+
+    }
+    public static double getRelativePositionCircleCollidedY(Circle circle, Rectangle paddle)
+    {
+        return (circle.getCenterY() - paddle.getY()) / paddle.getHeight();
+    }
+
+
 }
