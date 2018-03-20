@@ -27,14 +27,6 @@ public class Block
         return blockIndex;
     }
 
-    public boolean checkCollision(Circle ball)
-    {
-        if (Colideable.collishion(ball, block))
-        {
-            return true;
-        }
-        return false;
-    }
 
     public void destruct()
     {
