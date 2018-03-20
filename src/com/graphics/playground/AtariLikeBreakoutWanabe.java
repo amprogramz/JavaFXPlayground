@@ -48,7 +48,8 @@ public class AtariLikeBreakoutWanabe extends Application {
     {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(20),
-                ae ->  ball.ballColide1(paddle.getPaddle(), blocks.getBlocks()) ));
+                ae ->  ball.ballColide1(paddle.getPaddle(), blocks)));
+
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

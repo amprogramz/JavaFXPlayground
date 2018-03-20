@@ -1,6 +1,7 @@
 package com.graphics.playground;
 
 
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -20,14 +21,11 @@ public class BlockGrid
         for(int index = 0; index < amountOfBlocks; index++)
         {
             double temp = (25 + ((25 * index) + (100 * index)));
-            blocks.add(new Block(temp, spaceing));
+            blocks.add(new Block(temp, spaceing, index));
         }
     }
 
-    public ArrayList<Block> getBlocksB()
-    {
-        return blocks;
-    }
+
 
     public ArrayList<Rectangle> getBlocks()
     {
@@ -38,4 +36,22 @@ public class BlockGrid
         }
         return blocksToReturn;
     }
+    public BlockGrid getBlockGrid()
+    {
+        return this;
+    }
+
+    public void checkForDestruction(Circle ball)
+    {
+        for(Block block : blocks)
+        {
+            if(Colideable.collishion(ball, blocks.get(block.getIndex()).getBlock()))
+            {
+                System.out.println("Block Destroyed " + block.getIndex());
+                blocks.get(block.getIndex()).destruct();
+            }
+        }
+
+    }
+
 }

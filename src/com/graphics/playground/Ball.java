@@ -28,7 +28,7 @@ public class Ball {
     }
 
 
-    public void ballColide1(Rectangle paddle, ArrayList<Rectangle> blocks)
+    public void ballColide1(Rectangle paddle, BlockGrid blocks)
     {
         if ( Colideable.collishion(circle, paddle) )
         {
@@ -39,10 +39,12 @@ public class Ball {
             // numbers to work with since a percent is out of 100.
             xMovement = (relativePos - .5) * 10;
             yMovement = Math.abs(xMovement) - 6;
-        }else if( Colideable.collishion(circle, blocks) )
+        }else if( Colideable.collishion(circle, blocks.getBlocks()) )
         {
+            blocks.checkForDestruction(circle);
             yMovement = -yMovement;
             circle.setCenterY(circle.getCenterY() + yMovement);
+
         }
         ballMovement();
     }
